@@ -8,7 +8,9 @@ require (
 	github.com/go-openapi/spec v0.20.6 // indirect
 	github.com/go-openapi/swag v0.21.1 // indirect
 	github.com/jinzhu/gorm v1.9.16
+	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
+	github.com/mattn/go-sqlite3 v1.14.13 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/spf13/viper v1.4.0
 	github.com/stretchr/testify v1.7.1
@@ -17,5 +19,7 @@ require (
 	github.com/swaggo/swag v1.8.2 // indirect
 	github.com/urfave/cli/v2 v2.8.1 // indirect
 	golang.org/x/net v0.0.0-20220531201128-c960675eff93 // indirect
+	gorm.io/driver/sqlite v1.3.2 // indirect
+	gorm.io/gorm v1.23.5 // indirect
 
 )

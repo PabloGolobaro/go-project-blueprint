@@ -2,8 +2,9 @@ package config
 
 import (
 	"fmt"
-	"github.com/jinzhu/gorm"
 	"github.com/spf13/viper"
+	"gorm.io/gorm"
+	"log"
 )
 
 // Config is global object that holds all application level variables.
@@ -19,7 +20,7 @@ type appConfig struct {
 	// the data source name (DSN) for connecting to the database. required.
 	DSN string `mapstructure:"dsn"`
 	// the API key needed to authorize to API. required.
-	ApiKey string `mapstructure:"api_key"`
+	//ApiKey string `mapstructure:"api_key"`
 	// Certificate file for HTTPS
 	CertFile string `mapstructure:"cert_file"`
 	// Private key file for HTTPS
@@ -28,19 +29,24 @@ type appConfig struct {
 
 // LoadConfig loads config from files
 func LoadConfig(configPaths ...string) error {
+	log.Println("Loading config...")
 	v := viper.New()
 	v.SetConfigName("example")
 	v.SetConfigType("yaml")
 	v.SetEnvPrefix("blueprint")
 	v.AutomaticEnv()
-	Config.DSN = v.Get("DSN").(string)
-	Config.ApiKey = v.Get("API_KEY").(string)
-	v.SetDefault("server_port", 8080)
 	for _, path := range configPaths {
 		v.AddConfigPath(path)
 	}
 	if err := v.ReadInConfig(); err != nil {
 		return fmt.Errorf("failed to read the configuration file: %s", err)
 	}
+
+	log.Println("Getting DSN...")
+	Config.DSN = v.Get("DSN").(string)
+	log.Println("Got DSN...")
+	//Config.ApiKey = v.Get("API_KEY").(string)
+	v.SetDefault("server_port", 8080)
+	log.Println("Loaded config...")
 	return v.Unmarshal(&Config)
 }
